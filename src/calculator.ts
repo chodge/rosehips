@@ -3,9 +3,6 @@
 import fixed = require('./fixedExpense');
 import variable = require('./variableExpense');
 
-var FixedExpense = fixed.FixedExpense,
-	VariableExpense = variable.VariableExpense;
-
-export function calculate (fixed:Array<FixedExpense>, variable:Array<VariableExpense>) : number {
+export function calculate (fixed:Array<fixed.FixedExpense>, variable:Array<variable.VariableExpense>) : number {
 	return 1;
 };
