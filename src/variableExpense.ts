@@ -1,3 +1,3 @@
-export class VariableExpense {
+export class Expense {
 
 }

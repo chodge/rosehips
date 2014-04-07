@@ -1,6 +1,10 @@
-var FixedExpense = (function () {
-    function FixedExpense() {
+var Expense = (function () {
+    function Expense(amount) {
+        this._amount = amount;
     }
-    return FixedExpense;
+    Expense.prototype.amount = function () {
+        return this._amount;
+    };
+    return Expense;
 })();
-exports.FixedExpense = FixedExpense;
+exports.Expense = Expense;

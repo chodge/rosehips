@@ -1,6 +1,6 @@
-var VariableExpense = (function () {
-    function VariableExpense() {
+var Expense = (function () {
+    function Expense() {
     }
-    return VariableExpense;
+    return Expense;
 })();
-exports.VariableExpense = VariableExpense;
+exports.Expense = Expense;
