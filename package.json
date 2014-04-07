@@ -1,0 +1,23 @@
+{
+  "name": "rosehips",
+  "version": "0.0.1",
+  "description": "Rosehips Profit Calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "ts": "node_modules\\.bin\\tsc --module commonjs src/calculator.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chodge/rosehips.git"
+  },
+  "author": "Cliffe Hodgkinson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chodge/rosehips/issues"
+  },
+  "homepage": "https://github.com/chodge/rosehips",
+  "devDependencies": {
+    "typescript": "~1.0.0"
+  }
+}
