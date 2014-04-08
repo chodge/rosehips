@@ -4,7 +4,7 @@
   "description": "Rosehips Profit Calculator",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "node_modules\\.bin\\mocha --reporter spec",
     "ts": "node_modules\\.bin\\tsc --module commonjs src/calculator.ts"
   },
   "repository": {
@@ -19,9 +19,11 @@
   "homepage": "https://github.com/chodge/rosehips",
   "devDependencies": {
     "typescript": "~1.0.0",
-    "should": "^3.3.0"
+    "should": "^3.3.0",
+    "mocha": "~1.18.2"
   },
   "dependencies": {
-    "underscore": "^1.6.0"
+    "underscore": "~1.6.0",
+    "should": "~3.3.0"
   }
 }

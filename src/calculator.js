@@ -10,11 +10,18 @@ function reduce(ary, iter, initial) {
     return returnValue;
 }
 
-function calculate(fixed, variable) {
-    var fixedExpenses = fixed ? reduce(fixed, function (memo, exp) {
+function calculate(quantity, fixed, variable) {
+    if (typeof quantity === "undefined") { quantity = 0; }
+    if (typeof fixed === "undefined") { fixed = []; }
+    if (typeof variable === "undefined") { variable = []; }
+    var fixedExpenses = reduce(fixed, function (memo, exp) {
         return memo + exp.amount();
-    }, 0) : 0;
+    }, 0);
 
-    return fixedExpenses;
+    var variableExpenses = reduce(variable, function (memo, exp) {
+        return memo + exp.amount(quantity);
+    }, 0);
+
+    return fixedExpenses + variableExpenses;
 }
 exports.calculate = calculate;

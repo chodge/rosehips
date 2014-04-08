@@ -1,8 +1,6 @@
 export class Expense {
-	private _amount:number;
-	constructor(amount:number) {
-		this._amount = amount;
-	}
+	
+	constructor(private _amount:number) { }
 	amount():number {
 		return this._amount;
 	}

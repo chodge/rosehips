@@ -18,10 +18,14 @@ function reduce<TType>(ary: Array<TType>, iter: (memo: number, obj: TType) => nu
 }
 
 
-export function calculate(fixed: Array<fixed.Expense>, variable: Array<variable.Expense>): number {
-    var fixedExpenses = fixed ?reduce(fixed, function(memo, exp) {
-			return memo + exp.amount();
-		}, 0) : 0;
+export function calculate(quantity:number = 0, fixed: Array<fixed.Expense> = [], variable: Array<variable.Expense> = []): number {
+    var fixedExpenses = reduce(fixed, function(memo, exp) {
+		return memo + exp.amount();
+    }, 0);
 
-	return fixedExpenses;
+    var variableExpenses = reduce(variable, function (memo, exp) {
+        return memo + exp.amount(quantity);
+    }, 0);
+
+	return fixedExpenses + variableExpenses;
 }

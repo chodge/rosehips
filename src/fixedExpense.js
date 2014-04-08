@@ -1,6 +1,6 @@
 var Expense = (function () {
-    function Expense(amount) {
-        this._amount = amount;
+    function Expense(_amount) {
+        this._amount = _amount;
     }
     Expense.prototype.amount = function () {
         return this._amount;
