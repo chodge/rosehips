@@ -1,9 +1,16 @@
 ﻿module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        watch: {
+            scripts: {
+                files: 'src/*.ts',
+                tasks: ['all']
+            }
+        },
         ts: {
             module: {
                 cmd: 'node_modules\\.bin\\tsc.cmd',
