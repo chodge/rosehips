@@ -20,11 +20,15 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Compile Include="Gruntfile.js" />
+    <Compile Include="src\container.js" />
     <Compile Include="test\calculator_spec.js" />
+    <Compile Include="test\container_spec.js" />
+    <Compile Include="test\variableExpense_spec.js" />
     <Content Include="defs\underscore.d.ts" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Compile Include="index.js" />
+    <Content Include="src\container.ts" />
     <TypeScriptCompile Include="src\calculator.ts" />
     <TypeScriptCompile Include="src\fixedExpense.ts" />
     <TypeScriptCompile Include="src\variableExpense.ts" />

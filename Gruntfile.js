@@ -7,7 +7,7 @@
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             scripts: {
-                files: 'src/*.ts',
+                files: ['src/*.ts', 'test/*.js'],
                 tasks: ['all']
             }
         },

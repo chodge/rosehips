@@ -18,11 +18,11 @@ function calculate(quantity, unitPrice, fixed, variable) {
     var price = quantity * unitPrice;
 
     var fixedExpenses = reduce(fixed, function (memo, exp) {
-        return memo + exp.amount();
+        return memo + exp.totalCost();
     }, 0);
 
     var variableExpenses = reduce(variable, function (memo, exp) {
-        return memo + exp.amount(quantity);
+        return memo + exp.totalCost(quantity);
     }, 0);
 
     return price - (fixedExpenses + variableExpenses);
