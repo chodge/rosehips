@@ -13,13 +13,17 @@ describe('Calculator', function() {
 		    calculate(50).should.equal(0);
 		});
 
+		it('should return the unit price without expenses', function () {
+		    calculate(2, 50).should.equal(100);
+		});
+
 		it('should return the sum of the fixed expenses', function () {
 		    var fixed = [
 				new FixedExpense(1),
 				new FixedExpense(2),
 				new FixedExpense(3)
 		    ];
-		    calculate(1, fixed).should.equal(6);
+		    calculate(1, 25, fixed).should.equal(19);
 		});
 
 		it('should return the sum of the variable expenses', function () {
@@ -28,8 +32,8 @@ describe('Calculator', function() {
 				new VariableExpense(2),
 				new VariableExpense(3)
 		    ];
-		    calculate(1, [], variable).should.equal(6);
-		    calculate(2, [], variable).should.equal(12);
+		    calculate(1, 100, [], variable).should.equal(94);
+		    calculate(2, 100, [], variable).should.equal(188);
 		})
 	});
 });

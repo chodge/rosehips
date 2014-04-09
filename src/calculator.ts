@@ -18,8 +18,11 @@ function reduce<TType>(ary: Array<TType>, iter: (memo: number, obj: TType) => nu
 }
 
 
-export function calculate(quantity:number = 0, fixed: Array<fixed.Expense> = [], variable: Array<variable.Expense> = []): number {
-    var fixedExpenses = reduce(fixed, function(memo, exp) {
+export function calculate(quantity:number = 0, unitPrice:number = 0, fixed: Array<fixed.Expense> = [], variable: Array<variable.Expense> = []): number {
+
+    var price = quantity * unitPrice;
+
+    var fixedExpenses = reduce(fixed, function (memo, exp) {
 		return memo + exp.amount();
     }, 0);
 
@@ -27,5 +30,5 @@ export function calculate(quantity:number = 0, fixed: Array<fixed.Expense> = [],
         return memo + exp.amount(quantity);
     }, 0);
 
-	return fixedExpenses + variableExpenses;
+	return price - (fixedExpenses + variableExpenses);
 }

@@ -10,10 +10,13 @@ function reduce(ary, iter, initial) {
     return returnValue;
 }
 
-function calculate(quantity, fixed, variable) {
+function calculate(quantity, unitPrice, fixed, variable) {
     if (typeof quantity === "undefined") { quantity = 0; }
+    if (typeof unitPrice === "undefined") { unitPrice = 0; }
     if (typeof fixed === "undefined") { fixed = []; }
     if (typeof variable === "undefined") { variable = []; }
+    var price = quantity * unitPrice;
+
     var fixedExpenses = reduce(fixed, function (memo, exp) {
         return memo + exp.amount();
     }, 0);
@@ -22,6 +25,6 @@ function calculate(quantity, fixed, variable) {
         return memo + exp.amount(quantity);
     }, 0);
 
-    return fixedExpenses + variableExpenses;
+    return price - (fixedExpenses + variableExpenses);
 }
 exports.calculate = calculate;
