@@ -28,3 +28,4 @@ function calculate(quantity, unitPrice, fixed, variable) {
     return price - (fixedExpenses + variableExpenses);
 }
 exports.calculate = calculate;
+;

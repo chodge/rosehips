@@ -4,6 +4,9 @@
 import fixed = require('./fixedExpense');
 import variable = require('./variableExpense');
 
+import FixedExpense = fixed.FixedExpense;
+import VariableExpense = variable.VariableExpense;
+
 function reduce<TType>(ary: Array<TType>, iter: (memo: number, obj: TType) => number, initial: number) {
     var returnValue: number = initial;
 
@@ -17,8 +20,7 @@ function reduce<TType>(ary: Array<TType>, iter: (memo: number, obj: TType) => nu
     return returnValue;
 }
 
-
-export function calculate(quantity:number = 0, unitPrice:number = 0, fixed: Array<fixed.Expense> = [], variable: Array<variable.Expense> = []): number {
+export function calculate(quantity: number = 0, unitPrice: number = 0, fixed: Array<FixedExpense> = [], variable: Array<VariableExpense> = []): number {
 
     var price = quantity * unitPrice;
 
@@ -31,4 +33,4 @@ export function calculate(quantity:number = 0, unitPrice:number = 0, fixed: Arra
     }, 0);
 
 	return price - (fixedExpenses + variableExpenses);
-}
+};

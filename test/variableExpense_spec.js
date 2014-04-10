@@ -1,7 +1,7 @@
 ﻿/// <reference path="../src/container.js"/>
 var should = require('should'),
     Container = require('../src/container').Container,
-	Expense = require('../src/variableExpense').Expense;
+	Expense = require('../src/variableExpense').VariableExpense;
 
 describe('Variable Expense', function () {    
     describe('#totalQuantity()', function () {

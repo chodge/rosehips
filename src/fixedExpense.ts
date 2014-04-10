@@ -1,4 +1,4 @@
-export class Expense {
+export class FixedExpense {
 	
     constructor(private _amount: number) { }
 

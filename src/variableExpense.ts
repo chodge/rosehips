@@ -2,7 +2,7 @@
 
 import container = require('./container');
 
-export class Expense {
+export class VariableExpense {
     constructor(private _unitCost:number = 0,
         private _unit:container.Container = new container.Container) {
     }

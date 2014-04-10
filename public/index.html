@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
-<html class="no-js" lang="en">
+<html class="no-js" lang="en" ng-app="rosehips">
 
 <head>
     <meta charset="utf-8">
@@ -12,31 +12,41 @@
 
     <link rel="stylesheet" href="css/app.css">
 </head>
-<body>
+<body ng-controller="CalculatorCtl">
 
     <dl class="accordion" data-accordion>
         <dd>
             <a href="#variable">Variable Expenses</a>
             <div id="variable" class="content active">
-                <h1>Variable expenses</h1>
+                <ul ng-repeat="exp in variableExpenses">
+                    <li>exp</li>
+                </ul>
             </div>
         </dd>
         <dd>
             <a href="#fixed">Fixed Expenses</a>
             <div id="fixed" class="content">
-                Panel 2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <ul ng-repeat="exp in fixedExpenses">
+                    <li>exp</li>
+                </ul>
             </div>
         </dd>
         <dd>
             <a href="#summary">Summary</a>
             <div id="summary" class="content">
-                Panel 3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <form>
+                    <label for="txtQuantity">Quantity:</label>
+                    <input type="text" id="txtQuantity" ng-model="quantity">
+                </form>
             </div>
         </dd>
     </dl>
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/foundation/js/foundation.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="js/module.js"></script>
+    <script src="js/rosehips.js"></script>
     <script>
     $(document).foundation();
     </script>

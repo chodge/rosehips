@@ -1,7 +1,7 @@
 var should = require('should'),
 	calculate = require('../src/calculator').calculate,
-	FixedExpense = require('../src/fixedExpense').Expense,
-	VariableExpense = require('../src/variableExpense').Expense;
+	FixedExpense = require('../src/fixedExpense').FixedExpense,
+	VariableExpense = require('../src/variableExpense').VariableExpense;
 
 describe('Calculator', function() {
 	describe('#calculate()', function() {

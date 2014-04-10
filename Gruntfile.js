@@ -3,6 +3,7 @@
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-browserify');
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -32,6 +33,13 @@
                     reporter: 'spec'
                 },
                 src: ['test/*.js']
+            }
+        },
+        browserify: {
+            dist: {
+                files: {
+                    'public/js/module.js': ['src/fixedExpense.js', 'src/variableExpense.js', 'src/calculator.js'],
+                }
             }
         }
     });
