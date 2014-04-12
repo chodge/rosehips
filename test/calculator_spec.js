@@ -19,9 +19,9 @@ describe('Calculator', function() {
 
 		it('should return the sum of the fixed expenses', function () {
 		    var fixed = [
-				new FixedExpense(1),
-				new FixedExpense(2),
-				new FixedExpense(3)
+				new FixedExpense('One', 1),
+				new FixedExpense('Two', 2),
+				new FixedExpense('Three', 3)
 		    ];
 		    calculate(1, 25, fixed).should.equal(19);
 		});

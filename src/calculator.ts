@@ -1,6 +1,5 @@
 /// <reference path="./fixedExpense.ts"/>
 /// <reference path="./variableExpense.ts"/>
-/// <reference path="../defs/underscore.d.ts"/>
 import fixed = require('./fixedExpense');
 import variable = require('./variableExpense');
 
@@ -25,7 +24,7 @@ export function calculate(quantity: number = 0, unitPrice: number = 0, fixed: Ar
     var price = quantity * unitPrice;
 
     var fixedExpenses = reduce(fixed, function (memo, exp) {
-        return memo + exp.totalCost();
+        return memo + exp.totalCost;
     }, 0);
 
     var variableExpenses = reduce(variable, function (memo, exp) {

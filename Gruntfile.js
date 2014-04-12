@@ -8,23 +8,28 @@
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         express: {
-            server: {
+            server: {                
                 options: {
-                    port: 9000,
-                    bases: 'public'
+                    port: 35729,
+                    bases: 'public',
+                    livereload: true
                 }
             }
         },
         watch: {
-            scripts: {
-                files: ['src/*.ts', 'test/*.js'],
-                tasks: ['build']
+            typescript: {
+                files: ['src/*.ts'],
+                tasks: ['ts']
+            },
+            src: {
+                files: ['src/*.js'],
+                tasks: ['mochaTest', 'browserify']
             }
         },
         ts: {
             module: {
                 cmd: 'node_modules\\.bin\\tsc.cmd',
-                args: ['--module', 'commonjs', 'src/calculator.ts']
+                args: ['--module', 'commonjs', 'src/app.ts']
             }
         },
         mochaTest: {
@@ -38,7 +43,7 @@
         browserify: {
             dist: {
                 files: {
-                    'public/js/module.js': ['src/fixedExpense.js', 'src/variableExpense.js', 'src/calculator.js'],
+                    'public/js/rosehips.js': ['src/fixedExpense.js', 'src/variableExpense.js', 'src/calculator.js', 'src/app.js'],
                 }
             }
         }
@@ -49,7 +54,7 @@
         grunt.util.spawn(this.data, done);
     });
     grunt.registerTask('build', ['ts:module', 'mochaTest:test']);
-    grunt.registerTask('run', ['express', 'express-keepalive']);
+    grunt.registerTask('server', ['express:server', 'express-keepalive']);
     grunt.registerTask('all', ['build', 'run']);
     grunt.registerTask('default', ['all']);
 };

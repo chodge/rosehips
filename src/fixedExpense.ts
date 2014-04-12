@@ -1,8 +1,9 @@
 export class FixedExpense {
-	
-    constructor(private _amount: number) { }
+    name: string;
+    totalCost: number;
 
-	totalCost():number {
-		return this._amount;
-	}
+    constructor(name: string, totalCost: number) {
+        this.name = name;
+        this.totalCost = totalCost;
+    }
 }

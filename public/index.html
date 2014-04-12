@@ -26,9 +26,23 @@
         <dd>
             <a href="#fixed">Fixed Expenses</a>
             <div id="fixed" class="content">
-                <ul ng-repeat="exp in fixedExpenses">
-                    <li>exp</li>
-                </ul>
+                <div ng-repeat="exp in fixedExpenses">
+                    <div class="row collapse">
+                        <div class="small-3 columns">
+                            <input type="text" ng-model="exp.name" placeholder="expense name">
+                        </div>
+                        <div class="small-3 columns">
+                            <div class="row collapse">
+                                <div class="small-3 columns">
+                                    <span class="prefix">$</span>
+                                </div>
+                                <div class="small-9 columns">
+                                    <input type="number" ng-model="exp.totalCost">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </dd>
         <dd>
@@ -36,7 +50,11 @@
             <div id="summary" class="content">
                 <form>
                     <label for="txtQuantity">Quantity:</label>
-                    <input type="text" id="txtQuantity" ng-model="quantity">
+                    <input type="number" id="txtQuantity" ng-model="quantity">
+
+                    <input type="submit" value="calculate" ng-click="calculate()">
+
+                    <input type="text" ng-model="totalPrice">
                 </form>
             </div>
         </dd>
@@ -45,7 +63,6 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/foundation/js/foundation.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
-    <script src="js/module.js"></script>
     <script src="js/rosehips.js"></script>
     <script>
     $(document).foundation();

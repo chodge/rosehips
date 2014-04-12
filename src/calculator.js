@@ -18,7 +18,7 @@ function calculate(quantity, unitPrice, fixed, variable) {
     var price = quantity * unitPrice;
 
     var fixedExpenses = reduce(fixed, function (memo, exp) {
-        return memo + exp.totalCost();
+        return memo + exp.totalCost;
     }, 0);
 
     var variableExpenses = reduce(variable, function (memo, exp) {

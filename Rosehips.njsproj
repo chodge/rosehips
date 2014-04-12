@@ -248,7 +248,6 @@
     <Compile Include="public\bower_components\modernizr\test\js\unit.js" />
     <Compile Include="public\bower_components\modernizr\test\qunit\qunit.js" />
     <Compile Include="public\bower_components\modernizr\test\qunit\run-qunit.js" />
-    <Compile Include="public\js\module.js" />
     <Compile Include="public\js\rosehips.js" />
     <Compile Include="src\container.js" />
     <Compile Include="test\calculator_spec.js" />
@@ -257,7 +256,8 @@
     <Content Include=".bowerrc" />
     <Content Include=".gitignore" />
     <Content Include="bower.json" />
-    <Content Include="defs\underscore.d.ts" />
+    <Content Include="defs\angular\angular.d.ts" />
+    <Content Include="defs\jquery\jquery.d.ts" />
     <Content Include="LICENSE" />
     <Content Include="package.json" />
     <Content Include="public\bower_components\angular\.bower.json" />
@@ -379,6 +379,7 @@
     <Content Include="README.md" />
     <Compile Include="index.js" />
     <Content Include="src\container.ts" />
+    <Content Include="src\app.ts" />
     <TypeScriptCompile Include="src\calculator.ts" />
     <TypeScriptCompile Include="src\fixedExpense.ts" />
     <TypeScriptCompile Include="src\variableExpense.ts" />
@@ -424,6 +425,8 @@
     <Folder Include=".git\refs\remotes\origin" />
     <Folder Include=".git\refs\tags" />
     <Folder Include="defs\" />
+    <Folder Include="defs\angular\" />
+    <Folder Include="defs\jquery\" />
     <Folder Include="public\" />
     <Folder Include="public\bower_components\" />
     <Folder Include="public\bower_components\angular\" />
