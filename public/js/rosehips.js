@@ -10,14 +10,23 @@ var app = angular.module('rosehips', []);
 
 app.controller('CalculatorCtl', function ($scope) {
     $scope.fixedExpenses = [
-        new FixedExpense('Employee wages', 200)
+        new FixedExpense('Employee wages', 200),
+        new FixedExpense('Facility rental', 45),
+        new FixedExpense('Materials (paper, elastics...)', 20)
     ];
     $scope.variableExpenses = [];
+
+    var containers = [];
+
     $scope.quantity = 200;
     $scope.unitPrice = 1.75;
 
     $scope.calculate = function () {
         $scope.totalPrice = calculate($scope.quantity, $scope.unitPrice, $scope.fixedExpenses, $scope.variableExpenses);
+    };
+
+    $scope.addFixed = function () {
+        $scope.fixedExpenses.push(new FixedExpense('', 0));
     };
 
     $scope.calculate();
@@ -100,20 +109,23 @@ exports.FixedExpense = FixedExpense;
 },{}],5:[function(require,module,exports){
 /// <reference path="./container.ts"/>
 var container = require('./container');
+var Container = container.Container;
 
 var VariableExpense = (function () {
-    function VariableExpense(_unitCost, _unit) {
-        if (typeof _unitCost === "undefined") { _unitCost = 0; }
-        if (typeof _unit === "undefined") { _unit = new container.Container; }
-        this._unitCost = _unitCost;
-        this._unit = _unit;
+    function VariableExpense(name, unitCost, unit) {
+        if (typeof name === "undefined") { name = ''; }
+        if (typeof unitCost === "undefined") { unitCost = 0; }
+        if (typeof unit === "undefined") { unit = new Container; }
+        this.name = name;
+        this.unitCost = unitCost;
+        this.unit = unit;
     }
     VariableExpense.prototype.totalQuantity = function (quantity) {
-        return quantity * this._unit.total();
+        return quantity * this.unit.total();
     };
 
     VariableExpense.prototype.totalCost = function (quantity) {
-        return this._unitCost * this.totalQuantity(quantity);
+        return this.unitCost * this.totalQuantity(quantity);
     };
     return VariableExpense;
 })();

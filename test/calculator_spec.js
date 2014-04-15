@@ -28,9 +28,9 @@ describe('Calculator', function() {
 
 		it('should return the sum of the variable expenses', function () {
 		    var variable = [
-				new VariableExpense(1),
-				new VariableExpense(2),
-				new VariableExpense(3)
+				new VariableExpense('A', 1),
+				new VariableExpense('B', 2),
+				new VariableExpense('C', 3)
 		    ];
 		    calculate(1, 100, [], variable).should.equal(94);
 		    calculate(2, 100, [], variable).should.equal(188);

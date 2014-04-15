@@ -37,10 +37,15 @@
                                     <span class="prefix">$</span>
                                 </div>
                                 <div class="small-9 columns">
-                                    <input type="number" ng-model="exp.totalCost">
+                                    <input type="number" ng-model="exp.totalCost" ng-change="calculate()">
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <div class="small-12 columns">
+                        <button type="button" class="button tiny" ng-click="addFixed()">Add</button>
                     </div>
                 </div>
             </div>

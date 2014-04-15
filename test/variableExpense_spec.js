@@ -13,7 +13,7 @@ describe('Variable Expense', function () {
         });
 
         it('should default to the quantity', function () {
-            var expense = new Expense(1);
+            var expense = new Expense('Stem', 1);
 
             expense.totalQuantity(1).should.equal(1);
             expense.totalQuantity(25).should.equal(25);
@@ -21,7 +21,7 @@ describe('Variable Expense', function () {
 
         it('should be the quantity x the unit\'s total', function () {
             var pail = new Container('Pail', 50),
-                expense = new Expense(3, pail);
+                expense = new Expense('Pail cost', 3, pail);
 
             expense.totalQuantity(1).should.equal(50);
             expense.totalQuantity(6).should.equal(300);
@@ -38,7 +38,7 @@ describe('Variable Expense', function () {
 
         it('should be the unit cost x the quantity', function () {
             var pail = new Container('Pail', 50),
-                expense = new Expense(2, pail);
+                expense = new Expense('Pail cost', 2, pail);
 
             expense.totalCost(1).should.equal(100);
             expense.totalCost(12).should.equal(12 * 2 * 50);
