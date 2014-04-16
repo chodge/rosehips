@@ -16,7 +16,8 @@ var VariableExpense = (function () {
     };
 
     VariableExpense.prototype.totalCost = function (quantity) {
-        return this.unitCost * this.totalQuantity(quantity);
+        var containerQuantity = quantity / this.unit.total();
+        return this.unitCost * containerQuantity;
     };
     return VariableExpense;
 })();

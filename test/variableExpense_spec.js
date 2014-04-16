@@ -36,12 +36,12 @@ describe('Variable Expense', function () {
             expense.totalCost(52).should.equal(0);
         });
 
-        it('should be the unit cost x the quantity', function () {
+        it('should be the unit cost x the quantity (in stems)', function () {
             var pail = new Container('Pail', 50),
                 expense = new Expense('Pail cost', 2, pail);
 
-            expense.totalCost(1).should.equal(100);
-            expense.totalCost(12).should.equal(12 * 2 * 50);
+            expense.totalCost(100).should.equal(100 / 50 * 2);
+            expense.totalCost(600).should.equal(600 / 50 * 2);
         });
     });
 });

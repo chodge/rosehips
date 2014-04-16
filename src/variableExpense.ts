@@ -18,7 +18,8 @@ export class VariableExpense {
         return quantity * this.unit.total();
     }
 
-    totalCost(quantity: number):number {
-        return this.unitCost * this.totalQuantity(quantity);
+    totalCost(quantity: number): number {
+        var containerQuantity = quantity / this.unit.total();
+        return this.unitCost * containerQuantity;
     }
 }

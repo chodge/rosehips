@@ -1,23 +1,20 @@
 ﻿export class Container {
-    constructor(private _name: string = 'Stem',
-        private _qty: number = 1,
-        private _unit:Container = null) { }
+    name: string;
+    quantity: number;
+    unit: Container;
 
-    name(): string {
-        return this._name;
-    }
+    constructor(name: string = 'Stem',
+        quantity: number = 1,
+        unit: Container = null) {
 
-    quantity(): number {
-        return this._qty;
-    }
-
-    unit(): Container {
-        return this._unit;
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
     }
 
     total(): number {
-        var multiplier = this._unit ? this._unit.total() : 1,
-            total = multiplier * this._qty;
+        var multiplier = this.unit ? this.unit.total() : 1,
+            total = multiplier * this.quantity;
 
         return total;
     }

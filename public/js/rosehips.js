@@ -1,10 +1,18 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+///<reference path="./variableExpense.ts"/>
+///<reference path="./fixedExpense.ts"/>
+///<reference path="./container.ts"/>
+///<reference path="./calculator.ts"/>
+///<reference path="../defs/angular/angular.d.ts"/>
+var variable = require('./variableExpense');
 var fixed = require('./fixedExpense');
+var container = require('./container');
 var calc = require('./calculator');
 
 var calculate = calc.calculate;
-
+var VariableExpense = variable.VariableExpense;
 var FixedExpense = fixed.FixedExpense;
+var Container = container.Container;
 
 var app = angular.module('rosehips', []);
 
@@ -14,9 +22,20 @@ app.controller('CalculatorCtl', function ($scope) {
         new FixedExpense('Facility rental', 45),
         new FixedExpense('Materials (paper, elastics...)', 20)
     ];
-    $scope.variableExpenses = [];
 
-    var containers = [];
+    var stem = new Container('Stem', 1), pail = new Container('Pail', 50, stem), cart = new Container('Cart', 10, pail), truck = new Container('Truck', 4, cart);
+    $scope.containers = [
+        stem,
+        pail,
+        cart,
+        truck
+    ];
+
+    $scope.variableExpenses = [
+        new VariableExpense('Bucket Deposit', 2.5, pail),
+        new VariableExpense('Cart Charge', 5, cart),
+        new VariableExpense('Transport Cost', 45, truck)
+    ];
 
     $scope.quantity = 200;
     $scope.unitPrice = 1.75;
@@ -29,10 +48,14 @@ app.controller('CalculatorCtl', function ($scope) {
         $scope.fixedExpenses.push(new FixedExpense('', 0));
     };
 
+    $scope.addVariable = function () {
+        $scope.variableExpenses.push(new VariableExpense('', 0, stem));
+    };
+
     $scope.calculate();
 });
 
-},{"./calculator":2,"./fixedExpense":4}],2:[function(require,module,exports){
+},{"./calculator":2,"./container":3,"./fixedExpense":4,"./variableExpense":5}],2:[function(require,module,exports){
 function reduce(ary, iter, initial) {
     var returnValue = initial;
 
@@ -67,28 +90,16 @@ exports.calculate = calculate;
 
 },{}],3:[function(require,module,exports){
 var Container = (function () {
-    function Container(_name, _qty, _unit) {
-        if (typeof _name === "undefined") { _name = 'Stem'; }
-        if (typeof _qty === "undefined") { _qty = 1; }
-        if (typeof _unit === "undefined") { _unit = null; }
-        this._name = _name;
-        this._qty = _qty;
-        this._unit = _unit;
+    function Container(name, quantity, unit) {
+        if (typeof name === "undefined") { name = 'Stem'; }
+        if (typeof quantity === "undefined") { quantity = 1; }
+        if (typeof unit === "undefined") { unit = null; }
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
     }
-    Container.prototype.name = function () {
-        return this._name;
-    };
-
-    Container.prototype.quantity = function () {
-        return this._qty;
-    };
-
-    Container.prototype.unit = function () {
-        return this._unit;
-    };
-
     Container.prototype.total = function () {
-        var multiplier = this._unit ? this._unit.total() : 1, total = multiplier * this._qty;
+        var multiplier = this.unit ? this.unit.total() : 1, total = multiplier * this.quantity;
 
         return total;
     };
@@ -125,7 +136,8 @@ var VariableExpense = (function () {
     };
 
     VariableExpense.prototype.totalCost = function (quantity) {
-        return this.unitCost * this.totalQuantity(quantity);
+        var containerQuantity = quantity / this.unit.total();
+        return this.unitCost * containerQuantity;
     };
     return VariableExpense;
 })();

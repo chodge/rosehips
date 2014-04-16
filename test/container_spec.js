@@ -8,12 +8,12 @@ describe('Container', function () {
         describe('default', function () {
             it('should have a name of Stem', function () {
                 var container = new Container;
-                container.name().should.equal('Stem');
+                container.name.should.equal('Stem');
             });
 
             it('should have a quantity of 1', function () {
                 var container = new Container;
-                container.quantity().should.equal(1);
+                container.quantity.should.equal(1);
             });
 
             it('should have a total of 1', function () {
@@ -23,7 +23,7 @@ describe('Container', function () {
 
             it('should have a null unit', function () {
                 var container = new Container;
-                should.not.exist(container.unit());
+                should.not.exist(container.unit);
             });
         });
 
@@ -32,9 +32,9 @@ describe('Container', function () {
                 var unit = new Container,
                     container = new Container('Truck', 20, unit);
 
-                container.name().should.equal('Truck');
-                container.quantity().should.equal(20);
-                container.unit().should.exactly(unit);
+                container.name.should.equal('Truck');
+                container.quantity.should.equal(20);
+                container.unit.should.exactly(unit);
             });
         });
     });

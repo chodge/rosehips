@@ -23,7 +23,11 @@
             },
             src: {
                 files: ['src/*.js'],
-                tasks: ['mochaTest', 'browserify']
+                tasks: ['browserify']
+            },
+            test: {
+                files: ['test/*.js', 'src/*.js'],
+                tasks: ['mochaTest']
             }
         },
         ts: {
