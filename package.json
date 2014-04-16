@@ -2,9 +2,9 @@
   "name": "rosehips",
   "version": "0.0.1",
   "description": "Rosehips Profit Calculator",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "test": "node_modules\\.bin\\mocha --reporter spec",
     "ts": "node_modules\\.bin\\tsc --module commonjs src/calculator.ts"
   },
