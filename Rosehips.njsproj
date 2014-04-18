@@ -249,6 +249,7 @@
     <Compile Include="public\bower_components\modernizr\test\qunit\qunit.js" />
     <Compile Include="public\bower_components\modernizr\test\qunit\run-qunit.js" />
     <Compile Include="public\js\rosehips.js" />
+    <Compile Include="server.js" />
     <Compile Include="src\app.js" />
     <Compile Include="src\container.js" />
     <Compile Include="test\calculator_spec.js" />
@@ -378,7 +379,6 @@
     <Content Include="public\css\app.css" />
     <Content Include="public\index.html" />
     <Content Include="README.md" />
-    <Compile Include="index.js" />
     <Content Include="src\container.ts" />
     <Content Include="src\app.ts" />
     <TypeScriptCompile Include="src\calculator.ts" />

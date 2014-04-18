@@ -1,2 +1,35 @@
-﻿body {
+﻿h3 {
+    margin-left: 10px;
+}
+#variable p {
+    padding: 5px 10px;
+}
+#containers .container,
+.expense {
+    padding: 10px;
+}
+#containers input[name="txtName"],
+.expense input[name="txtName"],
+.expense input[name="txtCost"] {
+    margin-bottom: 0;
+}
+#containers .no-unit input[name="txtName"] {
+    margin-bottom: 16px;
+}
+#containers .no-unit .units {
+    display: none;
+}
+#containers p {
+    margin: 5px 5px 0 5px;
+    text-align: center;
+}
+.add-row {
+    margin-top: -16px;
+    padding-left: 10px;
+}
+form .row.collapse > .columns.value {
+    padding: 10px 10px 9px 10px;
+    border: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.75);
+    margin-bottom: 10px;
 }

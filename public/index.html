@@ -13,65 +13,47 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body ng-controller="CalculatorCtl">
-
-    <h3>Containers</h3>
-    <div ng-repeat="container in containers">
-        <div class="row collapse">
-            <div class="small-2 columns">
-                <input type="number" ng-model="container.quantity" ng-change="calculate()">
-            </div>
-            <div class="small-3 columns">
-                <input type="text" ng-model="container.name">
-            </div>
-            <div class="small-1 columns">
-                <label>per</label>
-            </div>
-            <div class="small-3 columns">
-                <select
-                    ng-model="container.unit"
-                    ng-options="c.name for c in containers"
-                    ng-change="calculate()"></select>
-            </div>
-        </div>
-    </div>
-
     <h3>Variable Expenses</h3>
     <div ng-repeat="exp in variableExpenses">
-        <div class="row collapse">
-            <div class="small-3 columns">
-                <input type="text" ng-model="exp.name">
+        <div class="row collapse expense">
+            <div class="small-8 columns">
+                <input type="text" name="txtName" placeholder="Expense Name"
+                       ng-model="exp.name">
             </div>
-            <div class="small-3 columns">
+            <div class="small-4 columns">
                 <div class="row collapse">
                     <div class="small-3 columns">
                         <span class="prefix">$</span>
                     </div>
                     <div class="small-9 columns">
-                        <input type="number" ng-model="exp.unitCost" ng-change="calculate()">
+                        <input type="number" name="txtCost"
+                               ng-model="exp.unitCost" ng-change="calculate()">
                     </div>
                 </div>
             </div>
-            <div class="small-3 columns">
-                <select
-                    ng-model="exp.unit"
-                    ng-options="c.name for c in containers"
-                    ng-change="calculate()"></select>
+            <div class="small-4 columns">
+                <p>Per</p>
             </div>
-        </div>        
+            <div class="small-8 columns">
+                <select ng-model="exp.unit"
+                        ng-options="c.name for c in containers"
+                        ng-change="calculate()"></select>
+            </div>
+        </div>
     </div>
-    <div class="row collapse">
+    <div class="row collapse add-row">
         <div class="small-12 columns">
             <button type="button" class="button tiny" ng-click="addVariable()">Add</button>
         </div>
     </div>
-            
+
     <h3>Fixed Expenses</h3>
     <div ng-repeat="exp in fixedExpenses">
-        <div class="row collapse">
-            <div class="small-3 columns">
+        <div class="row collapse expense">
+            <div class="small-8 columns">
                 <input type="text" ng-model="exp.name" placeholder="expense name">
             </div>
-            <div class="small-3 columns">
+            <div class="small-4 columns">
                 <div class="row collapse">
                     <div class="small-3 columns">
                         <span class="prefix">$</span>
@@ -83,31 +65,102 @@
             </div>
         </div>
     </div>
-    <div class="row collapse">
+    <div class="row collapse add-row">
         <div class="small-12 columns">
             <button type="button" class="button tiny" ng-click="addFixed()">Add</button>
         </div>
     </div>
-        
+
     <h3>Summary</h3>
     <form>
         <label for="txtQuantity">Price per Stem:</label>
-        <input type="number" id="txtPrice" ng-model="unitPrice" ng-change="calculate()">
-
-        <label for="txtQuantity">Quantity:</label>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix">$</span>
+            </div>
+            <div class="small-10 columns">
+                <input type="number" id="txtPrice" ng-model="unitPrice" ng-change="calculate()">
+            </div>
+        </div>
+        <label for="txtQuantity">Stems Sold:</label>
         <input type="number" id="txtQuantity" ng-model="quantity" ng-change="calculate()">
 
-        <input type="submit" value="calculate" ng-click="calculate()">
+        <label>Total Revenue:</label>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix">$</span>
+            </div>
+            <div class="small-10 columns value">
+                {{ revenue | number:2 }}
+            </div>
+        </div>
 
-        <input type="text" ng-model="totalPrice">
+        <label>Profit per Stem:</label>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix">$</span>
+            </div>
+            <div class="small-10 columns value">
+                {{ unitProfit | number:2 }}
+            </div>
+        </div>
+
+        <label>Total Profit:</label>
+        <div class="row collapse">
+            <div class="small-2 columns">
+                <span class="prefix">$</span>
+            </div>
+            <div class="small-10 columns value">
+                {{ totalProfit | number:2 }}
+            </div>
+        </div>                         
     </form>
+
+    <dl class="accordion" data-accordion>
+        <dd>
+            <a href="#containers">Containers (click to show)</a>
+            <div id="containers" class="content">
+                <div ng-repeat="container in containers">
+                    <div class="row collapse container ng-class: (container.unit ? '' : 'no-unit')">
+                        <div class="row collapse">
+                            <div class="small-1 columns units">
+                                <p>1</p>
+                            </div>
+                            <div class="small-11 columns columns">
+                                <input type="text" ng-model="container.name" name="txtName">
+                            </div>
+                        </div>
+                        <div class="row collapse units">
+                            <div class="small-4 columns">
+                                <p>Contains</p>
+                            </div>
+                            <div class="small-3 columns">
+                                <input type="number" ng-model="container.quantity" ng-change="calculate()">
+                            </div>
+
+                            <div class="small-4 columns">
+                                <select ng-model="container.unit"
+                                        ng-options="c.name for c in containers"
+                                        ng-change="calculate()"></select>
+                            </div>
+                            <div class="small-1 columns">
+                                <p>s</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="button tiny" ng-click="addContainer()">Add</button>
+            </div>
+        </dd>
+    </dl>
+
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/foundation/js/foundation.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="js/rosehips.js"></script>
     <script>
-    $(document).foundation();
+        $(document).foundation();
     </script>
 </body>
 </html>

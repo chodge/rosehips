@@ -34,7 +34,7 @@ app.controller('CalculatorCtl', function ($scope) {
     ];
 
     $scope.variableExpenses = [
-        new VariableExpense('Bucket Deposit', 2.5, pail),
+        new VariableExpense('Bucket Deposit', 2, pail),
         new VariableExpense('Cart Charge', 5, cart),
         new VariableExpense('Transport Cost', 45, truck),
     ];
@@ -42,8 +42,10 @@ app.controller('CalculatorCtl', function ($scope) {
     $scope.quantity = 200;
     $scope.unitPrice = 1.75;
 
-    $scope.calculate = function() {
-        $scope.totalPrice = calculate($scope.quantity, $scope.unitPrice, $scope.fixedExpenses, $scope.variableExpenses);   
+    $scope.calculate = function () {
+        $scope.revenue = $scope.quantity * $scope.unitPrice;
+        $scope.totalProfit = calculate($scope.quantity, $scope.unitPrice, $scope.fixedExpenses, $scope.variableExpenses);   
+        $scope.unitProfit = $scope.totalProfit / $scope.quantity;
     };
 
     $scope.addFixed = function() {
@@ -52,6 +54,10 @@ app.controller('CalculatorCtl', function ($scope) {
 
     $scope.addVariable = function () {
         $scope.variableExpenses.push(new VariableExpense('', 0, stem));
+    };
+
+    $scope.addContainer = function () {
+        $scope.containers.push(new Container('', 1, stem));
     };
 
     $scope.calculate();
