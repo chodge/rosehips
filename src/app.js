@@ -36,14 +36,15 @@ app.controller('CalculatorCtl', function ($scope) {
         new VariableExpense('Transport Cost', 45, truck)
     ];
 
-    $scope.quantity = 200;
+    $scope.quantity = 20;
     $scope.unitPrice = 1.75;
+    $scope.unit = pail;
 
     $scope.calculate = function () {
-        $scope.revenue = $scope.quantity * $scope.unitPrice;
-        $scope.totalProfit = calculate($scope.quantity, $scope.unitPrice, $scope.fixedExpenses, $scope.variableExpenses);
-        $scope.totalExpenses = $scope.revenue - $scope.totalProfit;
-        $scope.unitProfit = $scope.totalProfit / $scope.quantity;
+        var quantity = $scope.unit.total() * $scope.quantity;
+        $scope.revenue = quantity * $scope.unitPrice;
+        $scope.totalProfit = calculate(quantity, $scope.unitPrice, $scope.fixedExpenses, $scope.variableExpenses);
+        $scope.unitProfit = $scope.totalProfit / quantity;
     };
 
     $scope.addFixed = function () {

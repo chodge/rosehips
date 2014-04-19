@@ -127,66 +127,51 @@
             </dd>
         </dl>
     </article>
-    <footer>
-        <h3>Summary</h3>
-        <form>
+    <ul class="pricing-table">
+        <li class="title">Summary</li>
+        <li class="description">
             <div class="row collapse">
-                <label class="small-4 columns" for="txtQuantity">
-                    <strong>Price / Stem</strong>:
-                </label>
-                <div class="small-2 columns">
-                    <span class="prefix">$</span>
+                <div class="small-6 columns">
+                    <label for="txtPrice" class="text-left">
+                        <strong>Price / Stem</strong>:
+                    </label>
+                    <div class="row collapse">
+                        <div class="small-2 columns">
+                            <span class="prefix">$</span>
+                        </div>
+                        <div class="small-6 columns end">
+                            <input type="number" id="txtPrice" ng-model="unitPrice" ng-change="calculate()">
+                        </div>
+                    </div>
                 </div>
                 <div class="small-6 columns">
-                    <input type="number" id="txtPrice" ng-model="unitPrice" ng-change="calculate()">
+                    <label for="txtQuantity" class="text-left">
+                        <strong>Quantity</strong>:
+                    </label>
+                    <div class="row collapse">
+                        <div class="small-6 columns">
+                            <input type="number" id="txtQuantity" ng-model="quantity" ng-change="calculate()">
+                        </div>
+                        <div class="small-6 columns">
+                            <select ng-model="unit"
+                                    ng-options="c.name for c in containers"
+                                    ng-change="calculate()"></select>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </li>
+        <li class="bullet-item">
             <div class="row collapse">
-                <label class="small-4 columns" for="txtQuantity">
-                    <strong>Stems Sold</strong>:
-                </label>
-                <div class="small-6 small-offset-2 columns">
-                    <input type="number" id="txtQuantity" ng-model="quantity" ng-change="calculate()">
+                <div class="small-3 columns">
+                    Revenue: {{ revenue | currency }}
+                </div>
+                <div class="small-6 small-offset-3 columns">
+                    Profit: {{ totalProfit | currency }} ({{ unitProfit | currency }}/Stem)
                 </div>
             </div>
-            <div class="row collapse">
-                <label class="small-4 columns">Revenue:</label>
-                <div class="small-2 columns">
-                    <span class="prefix">$</span>
-                </div>
-                <div class="small-6 columns value">
-                    {{ revenue | number:2 }}
-                </div>
-            </div>
-            <div class="row collapse">
-                <label class="small-4 columns">Expenses:</label>
-                <div class="small-2 columns">
-                    <span class="prefix">$</span>
-                </div>
-                <div class="small-6 columns value">
-                    {{ totalExpenses | number:2 }}
-                </div>
-            </div>
-            <div class="row collapse">
-                <label class="small-4 columns">Profit / Stem:</label>
-                <div class="small-2 columns">
-                    <span class="prefix">$</span>
-                </div>
-                <div class="small-6 columns value">
-                    {{ unitProfit | number:2 }}
-                </div>
-            </div>
-            <div class="row collapse">
-                <label class="small-4 columns">Total Profit:</label>
-                <div class="small-2 columns">
-                    <span class="prefix">$</span>
-                </div>
-                <div class="small-6 columns value">
-                    {{ totalProfit | number:2 }}
-                </div>
-            </div>
-        </form>
-    </footer>
+        </li>
+    </ul>
 
     <ol class="joyride-list" data-joyride>
         <li data-id="welcome" data-text="Next">

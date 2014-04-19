@@ -19,7 +19,9 @@ input[type=number] {
 }
 #containers input[name="txtName"],
 .expense input[name="txtName"],
-.expense input[name="txtCost"] {
+.expense input[name="txtCost"],
+.pricing-table input,
+.pricing-table select {
     margin-bottom: 0;
 }
 #containers .no-unit input[name="txtName"] {
@@ -41,20 +43,22 @@ form .row.collapse > .columns.value {
     border: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.75);
 }
-footer {
-    border-top: solid 1px #ccc;
+.pricing-table {
     position: fixed;
     bottom: 0;
     width: 100%;
     background-color: #fff;
     z-index: 3;
-    padding-top: 5px;
     -webkit-transform: translateZ(0);
+}
+.pricing-table span.prefix {
+    padding-top: 10px;
 }
 article {
     max-width: 800px;
-    margin-bottom: 300px;
+    margin-bottom: 225px;
 }
+
 dl {
     max-width: 400px;
 }
