@@ -1,12 +1,21 @@
-﻿h3 {
+﻿h1 {
+    color: #ce3000;
+    margin-left: 10px;
+    text-align: center;
+}
+h3 {
     margin-left: 10px;
 }
 #variable p {
     padding: 5px 10px;
+    text-align: right;
 }
 #containers .container,
-.expense {
+#variable .expense {
     padding: 10px;
+}
+input[type=text],
+input[type=number] {
 }
 #containers input[name="txtName"],
 .expense input[name="txtName"],
@@ -31,5 +40,32 @@ form .row.collapse > .columns.value {
     padding: 10px 10px 9px 10px;
     border: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.75);
-    margin-bottom: 10px;
+}
+footer {
+    border-top: solid 1px #ccc;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 3;
+    padding-top: 5px;
+    -webkit-transform: translateZ(0);
+}
+article {
+    max-width: 800px;
+    margin-bottom: 300px;
+}
+dl {
+    max-width: 400px;
+}
+@media (max-width: 767px) {
+    h1 {
+        font-size: 12px;
+    }
+}
+@media (min-width: 768px) {
+    section {
+        float: left;
+        width: 49%;
+    }
 }

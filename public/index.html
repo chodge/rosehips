@@ -24,150 +24,179 @@
     </script>
 </head>
 <body ng-controller="CalculatorCtl">
-    <h3>Variable Expenses</h3>
-    <div ng-repeat="exp in variableExpenses">
-        <div class="row collapse expense">
-            <div class="small-8 columns">
-                <input type="text" name="txtName" placeholder="Expense Name"
-                       ng-model="exp.name">
-            </div>
-            <div class="small-4 columns">
-                <div class="row collapse">
-                    <div class="small-3 columns">
-                        <span class="prefix">$</span>
+    <article>
+        <h1 id="welcome">Welcome to the Rosehips Profit Calculator!</h1>
+        <section>
+            <h3>Variable Expenses</h3>
+            <div id="variable" ng-repeat="exp in variableExpenses">
+                <div class="row collapse expense">
+                    <div class="small-8 columns">
+                        <input type="text" name="txtName" placeholder="Expense Name"
+                               ng-model="exp.name">
                     </div>
-                    <div class="small-9 columns">
-                        <input type="number" name="txtCost"
-                               ng-model="exp.unitCost" ng-change="calculate()">
-                    </div>
-                </div>
-            </div>
-            <div class="small-4 columns">
-                <p>Per</p>
-            </div>
-            <div class="small-8 columns">
-                <select ng-model="exp.unit"
-                        ng-options="c.name for c in containers"
-                        ng-change="calculate()"></select>
-            </div>
-        </div>
-    </div>
-    <div class="row collapse add-row">
-        <div class="small-12 columns">
-            <button type="button" class="button tiny" ng-click="addVariable()">Add</button>
-        </div>
-    </div>
-
-    <h3>Fixed Expenses</h3>
-    <div ng-repeat="exp in fixedExpenses">
-        <div class="row collapse expense">
-            <div class="small-8 columns">
-                <input type="text" ng-model="exp.name" placeholder="expense name">
-            </div>
-            <div class="small-4 columns">
-                <div class="row collapse">
-                    <div class="small-3 columns">
-                        <span class="prefix">$</span>
-                    </div>
-                    <div class="small-9 columns">
-                        <input type="number" ng-model="exp.totalCost" ng-change="calculate()">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row collapse add-row">
-        <div class="small-12 columns">
-            <button type="button" class="button tiny" ng-click="addFixed()">Add</button>
-        </div>
-    </div>
-
-    <h3>Summary</h3>
-    <form>
-        <label for="txtQuantity">Price per Stem:</label>
-        <div class="row collapse">
-            <div class="small-2 columns">
-                <span class="prefix">$</span>
-            </div>
-            <div class="small-10 columns">
-                <input type="number" id="txtPrice" ng-model="unitPrice" ng-change="calculate()">
-            </div>
-        </div>
-        <label for="txtQuantity">Stems Sold:</label>
-        <input type="number" id="txtQuantity" ng-model="quantity" ng-change="calculate()">
-
-        <label>Total Revenue:</label>
-        <div class="row collapse">
-            <div class="small-2 columns">
-                <span class="prefix">$</span>
-            </div>
-            <div class="small-10 columns value">
-                {{ revenue | number:2 }}
-            </div>
-        </div>
-
-        <label>Profit per Stem:</label>
-        <div class="row collapse">
-            <div class="small-2 columns">
-                <span class="prefix">$</span>
-            </div>
-            <div class="small-10 columns value">
-                {{ unitProfit | number:2 }}
-            </div>
-        </div>
-
-        <label>Total Profit:</label>
-        <div class="row collapse">
-            <div class="small-2 columns">
-                <span class="prefix">$</span>
-            </div>
-            <div class="small-10 columns value">
-                {{ totalProfit | number:2 }}
-            </div>
-        </div>                         
-    </form>
-
-    <dl class="accordion" data-accordion>
-        <dd>
-            <a href="#containers">Containers (click to show)</a>
-            <div id="containers" class="content">
-                <div ng-repeat="container in containers">
-                    <div class="row collapse container ng-class: (container.unit ? '' : 'no-unit')">
+                    <div class="small-4 columns">
                         <div class="row collapse">
-                            <div class="small-1 columns units">
-                                <p>1</p>
+                            <div class="small-3 columns">
+                                <span class="prefix">$</span>
                             </div>
-                            <div class="small-11 columns columns">
-                                <input type="text" ng-model="container.name" name="txtName">
+                            <div class="small-9 columns">
+                                <input type="number" name="txtCost"
+                                       ng-model="exp.unitCost" ng-change="calculate()">
                             </div>
                         </div>
-                        <div class="row collapse units">
-                            <div class="small-4 columns">
-                                <p>Contains</p>
-                            </div>
+                    </div>
+                    <div class="small-4 columns">
+                        <p>Per</p>
+                    </div>
+                    <div class="small-8 columns">
+                        <select ng-model="exp.unit"
+                                ng-options="c.name for c in containers"
+                                ng-change="calculate()"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row collapse add-row">
+                <div class="small-12 columns">
+                    <button type="button" class="button tiny" ng-click="addVariable()">Add Variable Expense</button>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3>Fixed Expenses</h3>
+            <div id="fixed" ng-repeat="exp in fixedExpenses">
+                <div class="row collapse expense">
+                    <div class="small-8 columns">
+                        <input type="text" ng-model="exp.name" placeholder="expense name">
+                    </div>
+                    <div class="small-4 columns">
+                        <div class="row collapse">
                             <div class="small-3 columns">
-                                <input type="number" ng-model="container.quantity" ng-change="calculate()">
+                                <span class="prefix">$</span>
                             </div>
-
-                            <div class="small-4 columns">
-                                <select ng-model="container.unit"
-                                        ng-options="c.name for c in containers"
-                                        ng-change="calculate()"></select>
-                            </div>
-                            <div class="small-1 columns">
-                                <p>s</p>
+                            <div class="small-9 columns">
+                                <input type="number" ng-model="exp.totalCost" ng-change="calculate()">
                             </div>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="button tiny" ng-click="addContainer()">Add</button>
             </div>
-        </dd>
-    </dl>
+            <div class="row collapse">
+                <div class="small-12 columns">
+                    <button type="button" class="button tiny" ng-click="addFixed()">Add Fixed Expense</button>
+                </div>
+            </div>
+        </section>
 
+        <div class="clearfix"></div>
+
+        <dl class="accordion" data-accordion>
+            <dd>
+                <a href="#containers">Containers (click to show)</a>
+                <div id="containers" class="content">
+                    <div ng-repeat="container in containers">
+                        <div class="row collapse container ng-class: (container.unit ? '' : 'no-unit')">
+                            <div class="row collapse">
+                                <div class="small-1 columns units">
+                                    <p>1</p>
+                                </div>
+                                <div class="small-11 columns columns">
+                                    <input type="text" ng-model="container.name" name="txtName">
+                                </div>
+                            </div>
+                            <div class="row collapse units">
+                                <div class="small-4 columns">
+                                    <p>Contains</p>
+                                </div>
+                                <div class="small-3 columns">
+                                    <input type="number" ng-model="container.quantity" ng-change="calculate()">
+                                </div>
+
+                                <div class="small-4 columns">
+                                    <select ng-model="container.unit"
+                                            ng-options="c.name for c in containers"
+                                            ng-change="calculate()"></select>
+                                </div>
+                                <div class="small-1 columns">
+                                    <p>s</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="button tiny" ng-click="addContainer()">Add Container</button>
+                </div>
+            </dd>
+        </dl>
+    </article>
+    <footer>
+        <h3>Summary</h3>
+        <form>
+            <div class="row collapse">
+                <label class="small-4 columns" for="txtQuantity">
+                    <strong>Price / Stem</strong>:
+                </label>
+                <div class="small-2 columns">
+                    <span class="prefix">$</span>
+                </div>
+                <div class="small-6 columns">
+                    <input type="number" id="txtPrice" ng-model="unitPrice" ng-change="calculate()">
+                </div>
+            </div>
+            <div class="row collapse">
+                <label class="small-4 columns" for="txtQuantity">
+                    <strong>Stems Sold</strong>:
+                </label>
+                <div class="small-6 small-offset-2 columns">
+                    <input type="number" id="txtQuantity" ng-model="quantity" ng-change="calculate()">
+                </div>
+            </div>
+            <div class="row collapse">
+                <label class="small-4 columns">Revenue:</label>
+                <div class="small-2 columns">
+                    <span class="prefix">$</span>
+                </div>
+                <div class="small-6 columns value">
+                    {{ revenue | number:2 }}
+                </div>
+            </div>
+            <div class="row collapse">
+                <label class="small-4 columns">Expenses:</label>
+                <div class="small-2 columns">
+                    <span class="prefix">$</span>
+                </div>
+                <div class="small-6 columns value">
+                    {{ totalExpenses | number:2 }}
+                </div>
+            </div>
+            <div class="row collapse">
+                <label class="small-4 columns">Profit / Stem:</label>
+                <div class="small-2 columns">
+                    <span class="prefix">$</span>
+                </div>
+                <div class="small-6 columns value">
+                    {{ unitProfit | number:2 }}
+                </div>
+            </div>
+            <div class="row collapse">
+                <label class="small-4 columns">Total Profit:</label>
+                <div class="small-2 columns">
+                    <span class="prefix">$</span>
+                </div>
+                <div class="small-6 columns value">
+                    {{ totalProfit | number:2 }}
+                </div>
+            </div>
+        </form>
+    </footer>
+
+    <ol class="joyride-list" data-joyride>
+        <li data-id="welcome" data-text="Next">
+            <p>Hello, George, and welcome to the rosehips profit calculator.</p>
+        </li>
+    </ol>
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/foundation/js/foundation.js"></script>
+    <script src="/bower_components/foundation/foundation.joyride.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="js/rosehips.js"></script>
     <script>

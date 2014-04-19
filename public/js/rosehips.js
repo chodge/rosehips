@@ -43,6 +43,7 @@ app.controller('CalculatorCtl', function ($scope) {
     $scope.calculate = function () {
         $scope.revenue = $scope.quantity * $scope.unitPrice;
         $scope.totalProfit = calculate($scope.quantity, $scope.unitPrice, $scope.fixedExpenses, $scope.variableExpenses);
+        $scope.totalExpenses = $scope.revenue - $scope.totalProfit;
         $scope.unitProfit = $scope.totalProfit / $scope.quantity;
     };
 
