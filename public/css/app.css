@@ -50,6 +50,7 @@ form .row.collapse > .columns.value {
     background-color: #fff;
     z-index: 3;
     -webkit-transform: translateZ(0);
+    margin-bottom: 0;
 }
 .pricing-table span.prefix {
     padding-top: 10px;
